@@ -11,8 +11,10 @@ use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class UsersExport implements FromCollection , ShouldAutoSize
+class UsersExport implements FromCollection , ShouldAutoSize, WithMapping, WithHeadingRow
 //class UsersExport implements FromArray
 //class UsersExport implements FromView
 {
@@ -23,7 +25,9 @@ class UsersExport implements FromCollection , ShouldAutoSize
     */
     public function collection()
     {
-        return User::all();
+       return User::with('address')->get();
+        //dd($user);
+//        return User::all();
 //        return
 //            [
 //                ['Harish','Harish@Example.com'],
@@ -37,4 +41,22 @@ class UsersExport implements FromCollection , ShouldAutoSize
 //        ] );
 
     }
+    public function map($user): array
+{
+    return [
+        $user->id,
+    $user->name,
+    $user->email,
+       // $user->address->country
+    ];
+}
+public function headings():array
+{
+    return [
+        '#',
+        'name',
+        'email'
+    ];
+
+}
 }
