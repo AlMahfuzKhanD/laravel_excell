@@ -23,6 +23,6 @@ class UsersExportController extends Controller
 
         //return $excel->download(new UsersExport,'Users.xlsx');
         //using constructor
-        return $this->excel->download(new UsersExport,'Users.xlsx');
+        return $this->excel->download(new UsersExport,'Users.csv', Excel::CSV);
     }
 }
