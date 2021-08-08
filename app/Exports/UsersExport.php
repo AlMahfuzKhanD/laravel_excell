@@ -10,19 +10,20 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-//class UsersExport implements FromCollection
+class UsersExport implements FromCollection , ShouldAutoSize
 //class UsersExport implements FromArray
-class UsersExport implements FromView
+//class UsersExport implements FromView
 {
 //    use Exportable;
     //private $fileName = 'Users.xlsx';
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function view() :View
+    public function collection()
     {
-//        return User::all();
+        return User::all();
 //        return
 //            [
 //                ['Harish','Harish@Example.com'],
