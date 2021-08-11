@@ -41,6 +41,7 @@ class UsersExport implements FromCollection , ShouldAutoSize, WithMapping, WithH
 //        ] );
 
     }
+
     public function map($user): array
 {
     return [
